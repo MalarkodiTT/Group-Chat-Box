@@ -37,6 +37,11 @@ app.post("/api/messages", async (req, res) => {
     await newMessage.save();
     res.json(newMessage);
 });
+app.use(cors({
+    origin: "https://group-chat-box-1.onrender.com", // Unga frontend-oda Render link-a inga podunga
+    methods: ["GET", "POST"],
+    credentials: true
+}));
 
 // Socket Logic
 io.on("connection", (socket) => {
