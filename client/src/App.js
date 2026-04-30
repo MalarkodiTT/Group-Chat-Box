@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios';
 
-const socket = io.connect("http://localhost:5000");
+const socket = io.connect("https://group-chat-box.onrender.com/");
 
 function App() {
   const [username, setUsername] = useState("");
@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     if (isJoined) {
-      axios.get("http://localhost:5000/api/messages")
+      axios.get("https://group-chat-box.onrender.com/api/messages")
         .then(res => setChat(res.data))
         .catch(err => console.log("Fetch error"));
     }
@@ -37,7 +37,7 @@ function App() {
       };
       socket.emit("send_message", msgData);
       try {
-        await axios.post("http://localhost:5000/api/messages", msgData);
+        await axios.post("https://group-chat-box.onrender.com/api/messages", msgData);
       } catch (e) { console.log("DB Error"); }
       setMessage("");
     }
