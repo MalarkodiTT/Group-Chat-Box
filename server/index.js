@@ -49,6 +49,12 @@ io.on("connection", (socket) => {
         io.emit("receive_message", data);
     });
 });
+const io = new Server(server, {
+  cors: {
+    origin: "https://group-chat-box-1.onrender.com", // Ingaum frontend link podunga
+    methods: ["GET", "POST"]
+  }
+});
 
 server.listen(5000, () => console.log("🚀 Server running on port 5000"));
   
